@@ -42,7 +42,7 @@ const webViews = glob.sync(pattern)
   }, []);
 
 const plugin = {
-  webView: webViews
+  web_view: webViews
 }
 
 saveFile(outputFile, plugin);
