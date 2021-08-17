@@ -11,10 +11,14 @@ const glob = require("glob")
 const path = require("path")
 const remoteComponentConfig = require("./remote-component.config").resolve;
 
-const entry = glob.sync("src/views/**/index.js")
-  .reduce((x, y) => Object.assign(x, {
-    [path.basename(path.dirname(y))]: `./${y}`,
-  }), {});
+const entry = glob.sync("src/plugins/**/views/**/index.js", { noglobstar: true })
+  .reduce((x, y) => {
+  const dir = y.split(path.sep);
+
+  return Object.assign(x, {
+    [`${dir[2]}_${dir[4]}`]: `./${y}`,
+  })
+  }, {});
 
 const externals = Object.keys(remoteComponentConfig).reduce(
   (obj, key) => ({ ...obj, [key]: key }),
@@ -55,5 +59,12 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
     ]
+  },
+  resolve: {
+    alias: {
+      "components": path.resolve("./src/components"),
+      "utils": path.resolve("./src/utils"),
+      "store": path.resolve("./src/store")
+    }
   }
 };

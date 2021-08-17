@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Title from '../../components/Title';
-import { KitContextProvider } from "../../components/KitContext";
+import Title from 'components/Title';
+import { KitContextProvider } from "components/KitContext";
 
 class App extends Component {
   render() {
