@@ -15,8 +15,13 @@ const saveFile = (output, content) => {
 }
 
 const readFile = (pathname) => {
-  const contents = fs.readFileSync(pathname, "utf-8")
-  return JSON.parse(contents);
+  try {
+    const contents = fs.readFileSync(pathname, "utf-8")
+    return JSON.parse(contents);
+  } catch(err) {
+    console.log(err);
+    return {};
+  }
 }
 
 const getBundleName = (pathname) => {
@@ -31,6 +36,7 @@ plugins.forEach(pluginPath => {
   const assetsPath = `src/plugins/${pluginName}/assets`
   const pluginPattern = `src/plugins/${pluginName}/${viewPattern}`;
 
+  let assetsAdded = false;
   const assets = {
     strings: readFile(`${assetsPath}/${stringsFileName}`),
     icons: readFile(`${assetsPath}/${iconsFileName}`),
@@ -41,12 +47,11 @@ plugins.forEach(pluginPath => {
       const view = readFile(`${path.dirname(curr)}/${viewFileName}`);
       const generatedView = {
         src: getBundleName(curr),
-        meta: {
-          ...assets
-        }
+        ...(assetsAdded ? {} : { meta: { ...assets }}),
       };
 
       const webView = merge({}, view, generatedView);
+      assetsAdded = true;
 
       return [...acc, webView]
     }, []);
