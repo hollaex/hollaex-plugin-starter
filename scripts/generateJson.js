@@ -4,7 +4,7 @@ const glob = require("glob");
 const beautify = require("json-beautify");
 const merge = require("lodash.merge");
 
-const pluginPattern = "src/plugins/*";
+const pluginsPattern = "src/plugins/*";
 const viewPattern = "views/**/index.js";
 const stringsFileName = "strings.json";
 const iconsFileName = "icons.json";
@@ -25,33 +25,16 @@ const getBundleName = (pathname) => {
   return `${bundleName}.js`
 }
 
-const getViewName = (pathname) => {
-  const dir = pathname.split(path.sep);
-  return dir[4]
-}
-
-const modifyNestedKeys = (object, pathname) => {
-  const viewName = getViewName(pathname)
-  const result = {};
-  Object.entries(object).forEach(([key, value]) => {
-    result[key] = globalize(value, viewName)
-  })
-
-  return result;
-}
-
-const globalize = (object, name) => {
-  const globalObject = {}
-  Object.entries(object).forEach(([key, value]) => {
-    globalObject[`${name}_${key}`] = value;
-  })
-  return globalObject;
-}
-
-const plugins = glob.sync(pluginPattern);
+const plugins = glob.sync(pluginsPattern);
 plugins.forEach(pluginPath => {
   const pluginName = pluginPath.split(path.sep)[2]
+  const assetsPath = `src/plugins/${pluginName}/assets`
   const pluginPattern = `src/plugins/${pluginName}/${viewPattern}`;
+
+  const assets = {
+    strings: readFile(`${assetsPath}/${stringsFileName}`),
+    icons: readFile(`${assetsPath}/${iconsFileName}`),
+  };
 
   const webViews = glob.sync(pluginPattern, { noglobstar: true })
     .reduce((acc, curr) => {
@@ -59,8 +42,7 @@ plugins.forEach(pluginPath => {
       const generatedView = {
         src: getBundleName(curr),
         meta: {
-          strings: modifyNestedKeys(readFile(`${path.dirname(curr)}/${stringsFileName}`), curr),
-          icons: modifyNestedKeys(readFile(`${path.dirname(curr)}/${iconsFileName}`), curr)
+          ...assets
         }
       };
 

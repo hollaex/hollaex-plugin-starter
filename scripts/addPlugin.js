@@ -22,6 +22,7 @@ if (!plugin) {
     mkdirp(`src/plugins/${plugin}/views`)
       .then(() => {
         copydir.sync('src/templates/view', `src/plugins/${plugin}/views/view`);
+        copydir.sync('src/templates/assets', `src/plugins/${plugin}/assets`);
         console.log('Plugin has been added successfully');
       })
   }
