@@ -5,11 +5,11 @@
 import { RemoteComponent } from "@paciolan/remote-component";
 import React from "react";
 import ReactDOM from "react-dom";
-import LocalComponent from "./views/remoteComponent";
+import LocalComponent from "./plugins/sample/views/remoteComponent";
 
 // different paths for localhost vs s3
 const url =
-  process.env.NODE_ENV === "development" ? "/dist/remoteComponent.js" : "remoteComponent.js";
+  process.env.NODE_ENV === "development" ? "/dist/sample_remoteComponent.js" : "sample_remoteComponent.js";
 
 const node = document.getElementById("app");
 
