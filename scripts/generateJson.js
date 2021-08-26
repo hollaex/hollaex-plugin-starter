@@ -24,10 +24,10 @@ const readFile = (pathname) => {
   }
 }
 
-const getBundleName = (pathname) => {
+const getBundlePath = (pathname) => {
   const dir = pathname.split(path.sep);
-  const bundleName = `${dir[2]}_${dir[4]}`;
-  return `${bundleName}.js`
+  const bundleName = `${dir[2]}__${dir[4]}`;
+  return `/${bundleName}.js`
 }
 
 const plugins = glob.sync(pluginsPattern);
@@ -46,11 +46,14 @@ plugins.forEach(pluginPath => {
     .reduce((acc, curr) => {
       const view = readFile(`${path.dirname(curr)}/${viewFileName}`);
       const generatedView = {
-        src: getBundleName(curr),
+        src: getBundlePath(curr),
         ...(assetsAdded ? {} : { meta: { ...assets }}),
       };
 
-      const webView = merge({}, view, generatedView);
+      // development
+      // const webView = merge({}, view, generatedView);
+      const webView = merge({}, generatedView, view);
+
       assetsAdded = true;
 
       return [...acc, webView]
