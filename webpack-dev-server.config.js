@@ -30,7 +30,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "remote-component.config.js": path.resolve("./remote-component.config.js")
+      "remote-component.config.js": path.resolve("./remote-component.config.js"),
+      "components": path.resolve("./src/components"),
+      "utils": path.resolve("./src/utils"),
+      "store": path.resolve("./src/store"),
     }
   }
 };

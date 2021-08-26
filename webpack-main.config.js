@@ -16,7 +16,7 @@ const entry = glob.sync("src/plugins/**/views/**/index.js", { noglobstar: true }
   const dir = y.split(path.sep);
 
   return Object.assign(x, {
-    [`${dir[2]}_${dir[4]}`]: `./${y}`,
+    [`${dir[2]}__${dir[4]}`]: `./${y}`,
   })
   }, {});
 
