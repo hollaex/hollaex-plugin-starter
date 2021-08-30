@@ -12,8 +12,9 @@
     "webpack-dev-server": "cross-env NODE_ENV=development webpack-dev-server -d --port 9090 --config webpack-dev-server.config.js --open",
     "start": "concurrently -n webpack,webpack-dev-server -c green,cyan \"npm run build:dev -- --watch --verbose\" \"npm run webpack-dev-server\"",
     "clean": "rimraf dist",
+    "remove:json": "rimraf json",
     "lint": "eslint .",
-    "generate-json": "node scripts/generateJson.js",
+    "generate-json": "npm run remove:json && node scripts/generateJson.js",
     "add-plugin": "PLUGIN=$npm_config_plugin node scripts/addPlugin.js",
     "add-view": "PLUGIN=$npm_config_plugin WEB_VIEW=$npm_config_webview node scripts/addView.js"
   },

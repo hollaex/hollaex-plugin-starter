@@ -3,6 +3,7 @@ const path = require("path");
 const glob = require("glob");
 const beautify = require("json-beautify");
 const merge = require("lodash.merge");
+const mkdirp = require('mkdirp');
 
 const pluginsPattern = "src/plugins/*";
 const viewPattern = "views/**/index.js";
@@ -31,6 +32,11 @@ const getBundlePath = (pathname) => {
 }
 
 const plugins = glob.sync(pluginsPattern);
+
+if (!fs.existsSync('json')) {
+  mkdirp.sync('json')
+}
+
 plugins.forEach(pluginPath => {
   const pluginName = pluginPath.split(path.sep)[2]
   const assetsPath = `src/plugins/${pluginName}/assets`
