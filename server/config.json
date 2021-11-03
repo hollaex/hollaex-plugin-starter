@@ -1,0 +1,35 @@
+{
+	"version": 1,
+	"name": "plugin-template",
+	"type": null,
+	"author": "plugin-author",
+	"bio": "plugin-bio",
+	"description": "plugin-description",
+	"documentation": "plugin-documentation",
+	"logo": null,
+	"icon": null,
+	"url": null,
+	"meta": {
+		"secret": {
+			"type": "string",
+            "required": true,
+            "description": "Private secret config value",
+            "value": "shhhhhhh"
+		}
+	},
+	"public_meta": {
+		"name": {
+			"type": "string",
+            "required": false,
+            "description": "Public name config value",
+            "value": "Template"
+		}
+	},
+	"prescript": {
+		"install": [],
+		"run": null
+	},
+	"postscript": {
+		"run": null
+	}
+}
