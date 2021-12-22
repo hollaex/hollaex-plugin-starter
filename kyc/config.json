@@ -1,0 +1,29 @@
+{
+    "version": 5,
+    "name": "kyc",
+	"type": "kyc",
+    "author": "bitHolla",
+    "bio": "Know your customers by allow them to input their information and admin can view and approve or reject the documents",
+    "description": "Allows users to upload documents and input identity info.",
+    "documentation": null,
+    "logo": "https://bitholla.s3.ap-northeast-2.amazonaws.com/plugins/kyc-thumbnail.png",
+    "icon": "https://bitholla.s3.ap-northeast-2.amazonaws.com/plugins/kyc-icon.png",
+    "url": null,
+    "meta": {
+        "region": null,
+        "bucketName": null,
+        "accessKeyId": null,
+        "secretAccessKey": null
+    },
+    "public_meta": {},
+    "prescript": {
+        "run": null,
+        "install": [
+            "aws-sdk",
+            "awesome-phonenumber"
+        ]
+    },
+    "postscript": {
+        "run": null
+    }
+}
