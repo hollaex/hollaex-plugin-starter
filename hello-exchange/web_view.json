@@ -6,7 +6,7 @@
                 "strings": { "en": { "title": "Hello exchange", "hello": "Hello {0}" } },
                 "icons": { "dark": {} },
                 "is_page": true,
-                "path": "/custom-route",
+                "path": "/hello-exchange",
                 "hide_from_appbar": true,
                 "hide_from_sidebar": false,
                 "hide_from_menulist": false,
