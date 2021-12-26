@@ -1,0 +1,16 @@
+{
+    "web_view": [
+        {
+            "src": "https://bitholla.s3.ap-northeast-2.amazonaws.com/scripts/plugins/kyc/v5/kyc__home.js",
+            "meta": { "strings": { "en": {} }, "icons": { "dark": {} } },
+            "target": "REMOTE_COMPONENT__KYC_VERIFICATION_HOME",
+            "is_default": true
+        },
+        {
+            "src": "https://bitholla.s3.ap-northeast-2.amazonaws.com/scripts/plugins/kyc/v5/kyc__verification.js",
+            "target": "REMOTE_COMPONENT__KYC_VERIFICATION",
+            "meta": {},
+            "is_default": true
+        }
+    ]
+}
